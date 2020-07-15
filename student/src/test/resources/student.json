@@ -1,0 +1,31 @@
+{
+	"first_name": "teststuent",
+	"last_name": "teststuent",
+	"email": "teststuent@teststuent.com",
+	"phone": "+91-0123456789",
+	"course": {
+		"cName": "CEC",
+		"duration": 3,
+		"students": null,
+		"subjects": [
+			{
+				"subjName": "CompSc",
+				"score": 90,
+				"courses": null
+			}
+		]
+	},
+	"subjects": null,
+	"doj": 1277972920917,
+	"address": [
+		{
+			"street": "AECS 02 layout",
+			"pin": 560098,
+			"landmark": "GandhiHospital1",
+			"city": "Hubligmg",
+			"state": "Karnataka",
+			"students": null,
+			"country": "India"
+		}
+	]
+}

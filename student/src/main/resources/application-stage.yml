@@ -1,0 +1,23 @@
+server:
+  port: 8083
+spring:
+  security:
+    user:
+      password: stage_$tudentcase
+      username: stage%studentcase
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  datasource:
+    url: jdbc:h2:mem:stagedb
+    driverClassName: org.h2.Driver
+    username: stage
+    password: stage
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+##JWT
+jwt:
+  secret: stage_studentcase

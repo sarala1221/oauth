@@ -1,0 +1,20 @@
+server:
+  port: 8084
+spring:
+  security:
+    user:
+      password: test_$tudentcase
+      username: test%studentcase
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  datasource:
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: test
+    password: test
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+##JWT
+jwt:
+  secret: test_studentcase

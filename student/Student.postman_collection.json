@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "ada490f0-3524-4cdd-95a5-a5a5cbfc4b7e",
+		"name": "Student",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch All Students",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjEiLCJleHAiOjE1OTM4MDQxMDQsImlhdCI6MTU5Mzc4NjEwNH0.fJGiHoslxDeu23PGjfi4BNoNYm_EEP-txIZq2WHJDry0iiipkPPL2agWEUV17UA03ZVfMzE9L08CSBE9wlnqtw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/v1/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"v1",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjMiLCJleHAiOjE1OTM4MDU2NTAsImlhdCI6MTU5Mzc4NzY1MH0.yu8zBbC4hR20-gekJjYreD-EjGbgsAGuE5ja3pBYm60KuqcDvL5TlST4Q-fGa_r5NEf7xnBzG8xbXa5gzEGWew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"stuid\": 12,\r\n        \"first_name\": \"Sar\",\r\n        \"last_name\": \"Nagar\",\r\n        \"email\": \"annb@abc.com\",\r\n        \"phone\": 123456780,\r\n        \"course\": {\r\n            \"courseId\": 11,\r\n            \"cName\": \"CEC\",\r\n            \"duration\": 3,\r\n            \"students\": null,\r\n            \"subjects\": [\r\n                {\r\n                    \"subjId\": 10,\r\n                    \"subjName\": \"CompSc\",\r\n                    \"score\": 90,\r\n                    \"courses\": null\r\n                }\r\n            ]\r\n        },\r\n        \"subjects\": null,\r\n        \"doj\": 1277972920917,\r\n        \"address\": [\r\n            {\r\n                \"adId\": 9,\r\n                \"street\": \"AECS 02 layout\",\r\n                \"pin\": 560098,\r\n                \"landmark\": \"GandhiHospital1\",\r\n                \"city\": \"Hubligmg\",\r\n                \"state\": \"Karnataka\",\r\n                \"students\": null,\r\n                \"country\": \"India\"\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/v1/students/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStudentById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjMiLCJleHAiOjE1OTM4MDU2NTAsImlhdCI6MTU5Mzc4NzY1MH0.yu8zBbC4hR20-gekJjYreD-EjGbgsAGuE5ja3pBYm60KuqcDvL5TlST4Q-fGa_r5NEf7xnBzG8xbXa5gzEGWew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorizaition",
+						"value": "Basic dXNlcjpwYXNzd29yZA==",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "id",
+						"value": "0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/v1/students/remove?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students",
+						"remove"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enroll Student",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjEiLCJleHAiOjE1OTM4MDQxMDQsImlhdCI6MTU5Mzc4NjEwNH0.fJGiHoslxDeu23PGjfi4BNoNYm_EEP-txIZq2WHJDry0iiipkPPL2agWEUV17UA03ZVfMzE9L08CSBE9wlnqtw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "du",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"first_name\": \"ffff\", \r\n        \"last_name\": \"kk\",\r\n        \"email\": \"sa@bc.com\",\r\n        \"phone\": \"+91-1234567800\",\r\n        \"course\": {\r\n            \r\n            \"cName\": \"CEC\",\r\n            \"duration\": 3,\r\n            \"students\": null,\r\n            \"subjects\": [\r\n                {\r\n                   \r\n                    \"subjName\": \"CompSc\",\r\n                    \"score\": 90,\r\n                    \"courses\": null\r\n                }\r\n            ]\r\n        },\r\n        \"subjects\": null,\r\n        \"doj\": 1277972920917,\r\n        \"address\": [\r\n            {\r\n               \r\n                \"street\": \"AECS 02 layout\",\r\n                \"pin\": 560098,\r\n                \"landmark\": \"GandhiHospital1\",\r\n                \"city\": \"Hubligmg\",\r\n                \"state\": \"Karnataka\",\r\n                \"students\": null,\r\n                \"country\": \"India\"\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/v1/students/enroll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"v1",
+						"students",
+						"enroll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student By Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjEiLCJleHAiOjE1OTM4MDQxMDQsImlhdCI6MTU5Mzc4NjEwNH0.fJGiHoslxDeu23PGjfi4BNoNYm_EEP-txIZq2WHJDry0iiipkPPL2agWEUV17UA03ZVfMzE9L08CSBE9wlnqtw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/v1/students/student?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"v1",
+						"students",
+						"student"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student Partially",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjEiLCJleHAiOjE1OTM4MDQxMDQsImlhdCI6MTU5Mzc4NjEwNH0.fJGiHoslxDeu23PGjfi4BNoNYm_EEP-txIZq2WHJDry0iiipkPPL2agWEUV17UA03ZVfMzE9L08CSBE9wlnqtw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept-Encoding",
+						"value": "fr",
+						"type": "text"
+					},
+					{
+						"key": "phone",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/v1/students/updatePhone?id=4&&phone='+91-5555555505'",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"v1",
+						"students",
+						"updatePhone"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						},
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "phone",
+							"value": "'+91-5555555505'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jwt Token - stage",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "stage_$tudentcase",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "stage_$tudentcase",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"testuser1\",\r\n    \"password\" : \"testuser1$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enroll Student - stage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjIiLCJleHAiOjE1OTM4MDQ5OTcsImlhdCI6MTU5Mzc4Njk5N30.W5wEWrb_sfqRZyntHzz7U-tVbOrrxSkc2JwH375h1tOzWsf_BGHHmC6N6-if4me_lDxEM9ppqiIx7YyBtvizhQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "du",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"first_name\": \"ffff\", \r\n        \"last_name\": \"kk\",\r\n        \"email\": \"sa@bc.com\",\r\n        \"phone\": \"+91-1234567800\",\r\n        \"course\": {\r\n            \r\n            \"cName\": \"CEC\",\r\n            \"duration\": 3,\r\n            \"students\": null,\r\n            \"subjects\": [\r\n                {\r\n                   \r\n                    \"subjName\": \"CompSc\",\r\n                    \"score\": 90,\r\n                    \"courses\": null\r\n                }\r\n            ]\r\n        },\r\n        \"subjects\": null,\r\n        \"doj\": 1277972920917,\r\n        \"address\": [\r\n            {\r\n               \r\n                \"street\": \"AECS 02 layout\",\r\n                \"pin\": 560098,\r\n                \"landmark\": \"GandhiHospital1\",\r\n                \"city\": \"Hubligmg\",\r\n                \"state\": \"Karnataka\",\r\n                \"students\": null,\r\n                \"country\": \"India\"\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/v1/students/enroll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students",
+						"enroll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student By Id - stage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjIiLCJleHAiOjE1OTM4MDQ4NzYsImlhdCI6MTU5Mzc4Njg3Nn0.jKvO4DRGv6lQaZql6aMp5C7tM8ybLCA5UodPnuP18a3bWcT7qEnXPHXzu_LOa8W93sUe5WmkObUbkc4Qv5yKXQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/v1/students/student?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students",
+						"student"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch All Students - stage",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjMiLCJleHAiOjE1OTM4MDU2NTAsImlhdCI6MTU5Mzc4NzY1MH0.yu8zBbC4hR20-gekJjYreD-EjGbgsAGuE5ja3pBYm60KuqcDvL5TlST4Q-fGa_r5NEf7xnBzG8xbXa5gzEGWew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/v1/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jwt Token - stage",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "stage_$tudentcase",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "stage_$tudentcase",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"testuser2\",\r\n    \"password\" : \"testuser2$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student Partially - stage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjIiLCJleHAiOjE1OTM4MDQ5OTcsImlhdCI6MTU5Mzc4Njk5N30.W5wEWrb_sfqRZyntHzz7U-tVbOrrxSkc2JwH375h1tOzWsf_BGHHmC6N6-if4me_lDxEM9ppqiIx7YyBtvizhQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept-Encoding",
+						"value": "fr",
+						"type": "text"
+					},
+					{
+						"key": "phone",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/v1/students/updatePhone?id=4&&phone='+91-5555555505'",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students",
+						"updatePhone"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						},
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "phone",
+							"value": "'+91-5555555505'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student - stage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlcjMiLCJleHAiOjE1OTM4MDU2NTAsImlhdCI6MTU5Mzc4NzY1MH0.yu8zBbC4hR20-gekJjYreD-EjGbgsAGuE5ja3pBYm60KuqcDvL5TlST4Q-fGa_r5NEf7xnBzG8xbXa5gzEGWew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"stuid\": 12,\r\n        \"first_name\": \"Sar\",\r\n        \"last_name\": \"Nagar\",\r\n        \"email\": \"annb@abc.com\",\r\n        \"phone\": 123456780,\r\n        \"course\": {\r\n            \"courseId\": 11,\r\n            \"cName\": \"CEC\",\r\n            \"duration\": 3,\r\n            \"students\": null,\r\n            \"subjects\": [\r\n                {\r\n                    \"subjId\": 10,\r\n                    \"subjName\": \"CompSc\",\r\n                    \"score\": 90,\r\n                    \"courses\": null\r\n                }\r\n            ]\r\n        },\r\n        \"subjects\": null,\r\n        \"doj\": 1277972920917,\r\n        \"address\": [\r\n            {\r\n                \"adId\": 9,\r\n                \"street\": \"AECS 02 layout\",\r\n                \"pin\": 560098,\r\n                \"landmark\": \"GandhiHospital1\",\r\n                \"city\": \"Hubligmg\",\r\n                \"state\": \"Karnataka\",\r\n                \"students\": null,\r\n                \"country\": \"India\"\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/v1/students/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"students",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
