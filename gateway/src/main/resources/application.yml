@@ -1,0 +1,88 @@
+jwt:
+  token:
+    verification-key: |
+      -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsCdla+eXbtqhHU5k0RLh
+      vBGcL/7t9GVevERGOwVOnIR5Hj/gXkpU4Rpow+Dzi6sM4W4GQSp22JmNwToEtx4w
+      YrsgyPrftiBUBAum7VcpwXi7yi8xQyFf+SDXlOUDEu0W3xDciM+1DS4P0C7Y/yww
+      R81ruNB5OfGRVJVHPi9/lT/MEkC4s9YDigTWD9TAkVEkqXcA6pOeBWp74L8nDBi9
+      ZEFOD7egWJAPmeR7OOFFe190dibqQtEsehwrtrTVs5ikWJi7uIrNPmhFFpI+G1k7
+      Xt+MkRE6kTDVdbuA/WTqaSOqiWRUvDX3+C52lNPxG9oxBotJ02vwQooaNc9PD1wx
+      pQIDAQAB
+      -----END PUBLIC KEY----
+    policy:
+      activeKeyId: key-id-1
+      keys:
+        key-id-1:
+          signingKey: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEpQIBAAKCAQEAsCdla+eXbtqhHU5k0RLhvBGcL/7t9GVevERGOwVOnIR5Hj/g
+            XkpU4Rpow+Dzi6sM4W4GQSp22JmNwToEtx4wYrsgyPrftiBUBAum7VcpwXi7yi8x
+            QyFf+SDXlOUDEu0W3xDciM+1DS4P0C7Y/ywwR81ruNB5OfGRVJVHPi9/lT/MEkC4
+            s9YDigTWD9TAkVEkqXcA6pOeBWp74L8nDBi9ZEFOD7egWJAPmeR7OOFFe190dibq
+            QtEsehwrtrTVs5ikWJi7uIrNPmhFFpI+G1k7Xt+MkRE6kTDVdbuA/WTqaSOqiWRU
+            vDX3+C52lNPxG9oxBotJ02vwQooaNc9PD1wxpQIDAQABAoIBAQCUsozgy3x/bTq3
+            3GcqPgAjm9H2igIgXjncPt3yEIbNhN4g9NbXgXOpGXv6bbfo3Jlg6lmJROlR6j1J
+            MUqtsWQy07fXMD8MJLoHODbO/tcWpG4RPEkfW9sCGAEjhTZVEaJO5pLjQkKZP5rF
+            p+YxcQHIetVGC2VpzktZ1TFwgvP17aApOk534kLiZI1EEdxE6ScSfoErE/99j1pr
+            Glglxv/Wi1jN0842Z+XXevNPCr8OXjn9dufP69N9+GUSWvtdSo8X7cISIYtJ7qNg
+            Tvx+pOOtI/1zHeHCYmkL92TsPoiC4wTXn88JamNJzrDA3bj+roul3ow5hS/bPwQt
+            Jpl40rEBAoGBANgZuLdjfJppM/NqEh1gYCnCiY7q/qSNWl2L6TnUrKF7X4fGdPju
+            H6AlWsERVkz69TCad3v/s3Yos/EQmMZMOKAkD9eJAdcogn2LQta0SUXYMA+j4b7h
+            pAR9SydEK+WzR7vWync3vm4Ua+8xVPK2/n7BOyKUiwCvabiSSrW7PmSFAoGBANCt
+            i7x79toB3GQJmNc6WzLgm76aaUBtrNA8gp4PB1DLWnFsKGXJysC8FYJ3vIMDwTtV
+            91qcNJovG+YoR5ZZLar+sesZgDfTWIska/ObXVs8xwCB9hImmrqi+h1rk5oYtoQd
+            e6K+PR5PSvGQIVpsQ6VeFA0u+OGUTD46i5MCmTKhAoGBAKu0XFHSycnC95VcXYJb
+            9myX90bIr4Y+DmQv7COYOYahiblPVdgJFLXhmGe5h9HowXNZ+MBc3tJu6vMLFejR
+            3VhY7wF6Ci1UMcLhKT2ByIqniSCUPaW2keVDTLipcRu1RLUaqIrrjvLWZSCMGQw1
+            nKdIj90dHAlyV1VhX91gJuYlAoGATfkKxZrsWfloCFktqv47JX+XsliwC0rvz79M
+            bxLegOn7GXZ4gdAs2mdtAhsLbUjx4uH0Uv8bCKGhoxZZ6WvZDJOul1In/rQR2av6
+            SkQ7VeQX17C36YBTQHm1S1jvBh1F1YfOsriyzaiDME/Spp7dh+TnSSXMCT4IXxgx
+            HvVRmQECgYEAzShRxd5pVw/Nc4QrmvWC29hYz4t00J6Y7HkG0ydWMm84Jk8JsCZn
+            iWu+sHz+CivrEw3LhJbgCqIsrksuCDIoFM5w+FKfKMht6FK6uIo/GFhBeiVNOTbT
+            BebPhRbl8L2ybbilLC2IabcotnZ2/IkQATOezQY2saO6yYf4/bGFbNI=
+            -----END RSA PRIVATE KEY---------
+zuul:
+  routes:
+    student:
+      path: api/v1/students/**
+      url: http://localhost:8081/api/v1/students
+      
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+spring:
+  application:
+    name: gateway
+# DataSource settings: set here configurations for the database connection
+  datasource:
+    url: jdbc:h2:mem:devdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE;
+    username: dev
+    password: dev
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+# Specify the DBMS
+  jpa:
+    database: H2
+    properties:
+      hibernate: 
+        show_sql: true
+        hbm2ddl:
+          import_files:
+            classpath:data.sql
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+# Hibernate settings are prefixed with spring.jpa.hibernate.*
+      dialect: org.hibernate.dialect.H2Dialect
+# This is for FlyWay configuration
+  flyway:
+    url: jdbc:h2:mem:testdb
+    schemas: testdb
+    user: vslala
+    password: simplepass
