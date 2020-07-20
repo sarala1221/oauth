@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: default
+    active: stage
 logging:
   level:
     org:

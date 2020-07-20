@@ -1,10 +1,6 @@
 server:
-  port: 8083
+  port: 8082
 spring:
-  security:
-    user:
-      password: stage_$tudentcase
-      username: stage%studentcase
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -19,5 +15,3 @@ spring:
     console:
       enabled: true
 ##JWT
-jwt:
-  secret: stage_studentcase

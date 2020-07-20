@@ -1,10 +1,6 @@
 server:
   port: 8082
 spring:
-  security:
-    user:
-      password: dev_$tudentcase
-      username: dev%studentcase
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -16,5 +12,4 @@ spring:
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
 ##JWT
-jwt:
-  secret: dev_studentcase
+
