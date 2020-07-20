@@ -10,14 +10,11 @@ import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import io.jsonwebtoken.ExpiredJwtException;
 
 @ControllerAdvice
 @RestController
@@ -65,8 +62,8 @@ public class StudentExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<Object> handleUnAuthorizedException(AccessDeniedException ex, WebRequest request) {
+//	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<Object> handleUnAuthorizedException(Exception ex, WebRequest request) {
 
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("timestamp", LocalDateTime.now());
@@ -78,8 +75,8 @@ public class StudentExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
 	}
 	
-	@ExceptionHandler(TokenExpiredException.class)
-	public ResponseEntity<Object> handleTokenExpireException(TokenExpiredException ex, WebRequest request) {
+//	@ExceptionHandler(TokenExpiredException.class)
+	public ResponseEntity<Object> handleTokenExpireException(Exception ex, WebRequest request) {
 
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("timestamp", LocalDateTime.now());

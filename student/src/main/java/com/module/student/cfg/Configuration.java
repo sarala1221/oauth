@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -18,8 +17,8 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 @org.springframework.context.annotation.Configuration
-@Profile(value = { "dev", "stage" })
-@ConfigurationProperties("spring.security.user")
+//@Profile(value = { "dev" })
+//@ConfigurationProperties("spring.security.user")
 public class Configuration implements WebMvcConfigurer {
 
 	@Bean

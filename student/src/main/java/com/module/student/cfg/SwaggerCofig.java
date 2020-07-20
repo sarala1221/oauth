@@ -32,22 +32,22 @@ public class SwaggerCofig {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.module.student.controller"))
-				.paths(regex("/v1/student.*")).build().securitySchemes(Lists.newArrayList(apiKey()))
-				.securityContexts(Lists.newArrayList(securityContext())).apiInfo(metaData());
+				.paths(regex("/api/v1/student.*")).build().securitySchemes(Lists.newArrayList(apiKey()))
+				/* .securityContexts(Lists.newArrayList(securityContext())) */.apiInfo(metaData());
 
 	}
 
 	private ApiInfo metaData() {
 		ApiInfo apiInfo = new ApiInfo("Spring Boot REST API", "Spring Boot REST API for Student Case", "1.0",
-				"Terms of service", new Contact("Sarala Gunishetty", "http://localhost:8081/v1/student/", ""),
+				"Terms of service", new Contact("Sarala Gunishetty", "http://localhost:8081/api/v1/students/", ""),
 				"Apache License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0");
 		return apiInfo;
 	}
 
-	@Bean
-	SecurityContext securityContext() {
-		return SecurityContext.builder().securityReferences(defaultAuth()).forPaths(PathSelectors.any()).build();
-	}
+//	@Bean
+//	SecurityContext securityContext() {
+//		return SecurityContext.builder().securityReferences(defaultAuth()).forPaths(PathSelectors.any()).build();
+//	}
 
 	List<SecurityReference> defaultAuth() {
 		AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
@@ -60,12 +60,12 @@ public class SwaggerCofig {
 		return new ApiKey("Bearer", "Authorization", "header");
 	}
 	
-	@Bean
-    SecurityConfiguration security() {
-        return new SecurityConfiguration(
-                null, null, null,
-                "sudentcase", // app name
-                "BEARER", // api key value
-                ApiKeyVehicle.HEADER, "Authorization", ",");
-    }
+//	@Bean
+//    SecurityConfiguration security() {
+//        return new SecurityConfiguration(
+//                null, null, null,
+//                "sudentcase", // app name
+//                "BEARER", // api key value
+//                ApiKeyVehicle.HEADER, "Authorization", ",");
+//    }
 }
