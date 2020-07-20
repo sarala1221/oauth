@@ -17,6 +17,7 @@ public class OAuthDao {
 	public UserEntity getUserDetails(String username) {
 
 		UserEntity user = userRepo.findbyName(username);
+		System.err.println("user ::::::::::: " + user.getGrantedAuthoritiesList());
 		return user;
 	}
 }
