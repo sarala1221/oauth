@@ -1,11 +1,13 @@
 package com.api.gateway.cfg;
 
+import java.security.KeyPair;
+import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -16,27 +18,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtTokenUtil {
 	public static final long JWT_TOKEN_VALIDITY = 60;
-	private final static String privateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n" + 
-			"MIICXAIBAAKBgHqvhqTSG/k3VSZAyTOx6BmVpa9GlXEYg+11MNNG8YZJi08AhGco\r\n" + 
-			"f9HS2zXV9oT13CYVtjhlH7Xf8kAledjaJiBwL4wpDiqRwRgtKk3a5GtGkudqbA2t\r\n" + 
-			"NJjp43B6SEWL6sOjmW7k73DLvfxMGUaNaWtaucrBEhxshaRt3TECkIDJAgMBAAEC\r\n" + 
-			"gYBmQSvo7hJQqjS3OGI6SvrXcCnzJ9Jgu/0hin6SadvegCezRgwU6uV2HdeFTHs2\r\n" + 
-			"oLDHsWr6IBbJAQmpO1MOUexaDV6PXzHtGVBsY1e+Movm1jm070v/IfFQtzgAVeV9\r\n" + 
-			"TPWgQzmCnmWurHrV1dpXZJ2/8FruNEwkMgW/P3/E7nLd7QJBAMhpt/cNlKiLZvuc\r\n" + 
-			"vhpAQGl3nJpbDVMZDXDqwbYwYK06ijE8hkDvr9h92vLk+gCpqlciCWeSrXBYXfnO\r\n" + 
-			"flRKD38CQQCctsuWSUiqBYdVVJVJPkI4shb8z3TOgO7jbP+hWhQI0ADws9tJ6kY9\r\n" + 
-			"BC1JcABZc+gvSrteS5nxO9cRm/AqBxO3AkEAnknxhO1zBpPj6MLp2u34cdSJGdjk\r\n" + 
-			"c0eMOC0ShoU7NlbQIwc8ujkVWBY/Qizb0H4xDdTSPL26wsrono8bdBNynQJBAIjE\r\n" + 
-			"z7D9jDk2UgIaq58cgtbQNle1BpAi3loFiqPa5Zk7T1bC4SMFHv+pYYyx/twS2BRN\r\n" + 
-			"+HA3MsbiHrTzjwpe2skCQAf+3pNyPrdO+VOCx9F48XY2/8K2AWvGydUR1f6BMMRC\r\n" + 
-			"IaI9FWTrJZsmYZGRCfK75Vq6cmfBFASwutW9h4J7SQA=\r\n" + 
-			"-----END RSA PRIVATE KEY-----";
-	private final static String publicKey = "-----BEGIN PUBLIC KEY-----\r\n" + 
-			"MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHqvhqTSG/k3VSZAyTOx6BmVpa9G\r\n" + 
-			"lXEYg+11MNNG8YZJi08AhGcof9HS2zXV9oT13CYVtjhlH7Xf8kAledjaJiBwL4wp\r\n" + 
-			"DiqRwRgtKk3a5GtGkudqbA2tNJjp43B6SEWL6sOjmW7k73DLvfxMGUaNaWtaucrB\r\n" + 
-			"EhxshaRt3TECkIDJAgMBAAE=\r\n" + 
-			"-----END PUBLIC KEY-----";
+	@Autowired
+	private KeyPair keyPair;
 
 	// retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
@@ -55,7 +38,7 @@ public class JwtTokenUtil {
 
 	// for retrieveing any information from token we will need the secret key
 	private Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(publicKey).parseClaimsJws(token).getBody();
+		return Jwts.parser().setSigningKey((RSAPublicKey) keyPair.getPublic()).parseClaimsJws(token).getBody();
 	}
 
 	// check if the token has expired
@@ -79,7 +62,8 @@ public class JwtTokenUtil {
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-				.signWith(SignatureAlgorithm.RS512, privateKey).compact();
+				.signWith(SignatureAlgorithm.RS512, (RSAPublicKey) keyPair.getPrivate()).compact();
+
 	}
 
 	// validate token

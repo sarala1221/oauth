@@ -55,7 +55,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 			// manager
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getUsername(),
 					creds.getPassword(), creds.getAuthorities());
-			System.out.println("creds.getAuthorities() :::: " + creds.getAuthorities());
 
 			// 3. Authentication manager authenticate the user, and use
 			// UserDetialsServiceImpl::loadUserByUsername() method to load the user.
@@ -81,7 +80,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 						auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.setIssuedAt(new Date(now)).setExpiration(new Date(now + jwtConfig.getExpiration() * 1000)) // in
 																											// milliseconds
-				.signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes()).compact();
+				.signWith(SignatureAlgorithm.RS512, jwtConfig.getSecret().getBytes()).compact();
 
 		// Add token to header
 		response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
