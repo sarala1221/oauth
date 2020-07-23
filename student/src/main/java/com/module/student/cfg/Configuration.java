@@ -17,8 +17,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 @org.springframework.context.annotation.Configuration
-//@Profile(value = { "dev" })
-//@ConfigurationProperties("spring.security.user")
+@Profile(value = { "dev", "stage" })
 public class Configuration implements WebMvcConfigurer {
 
 	@Bean

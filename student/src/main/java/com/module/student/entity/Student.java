@@ -15,8 +15,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "TBL_STUDENTS")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })

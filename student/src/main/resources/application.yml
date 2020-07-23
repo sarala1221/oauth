@@ -1,7 +1,17 @@
 spring:
   profiles:
     active: stage
+  application:
+    name: student
 logging:
   level:
     org:
       springframework: info
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  serviceUrl:
+    defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${random.value}}

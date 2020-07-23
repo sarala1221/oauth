@@ -8,8 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-import lombok.Data;
-
 public class StudentDto {
 	private long stuid;
 	@NotBlank(message = "{first_name.not.empty}")

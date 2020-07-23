@@ -1,17 +1,17 @@
 package com.module.student.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.module.student.dao.StudentDAO;
 import com.module.student.entity.Student;
-import com.module.student.mapper.StudentMapper;
 import com.module.student.model.StudentDto;
 
 @Service
@@ -20,18 +20,12 @@ public class StudentService {
 	@Autowired
 	private StudentDAO studentDAO;
 
-	private StudentMapper mapper = Mappers.getMapper(StudentMapper.class);
+	ObjectMapper objectMapper = new ObjectMapper();
 
 	@Transactional(value = TxType.REQUIRED)
 	public void addStudent(StudentDto studentDto) {
-		studentDAO.addStudent(mapper.studentDtoToStudentEntity(studentDto));
+		studentDAO.addStudent(objectMapper.convertValue(studentDto, Student.class));
 
-	}
-
-	@Transactional(value = TxType.REQUIRED)
-	public void updateStudent(StudentDto studentDto) {
-		Student student = studentDAO.getStudentById(studentDto.getStuid());
-		studentDAO.updateStudent(mapper.updateStudentFromDto(studentDto, student));
 	}
 
 	public void patchUpdateStudent(long id, String phone) {
@@ -40,7 +34,7 @@ public class StudentService {
 
 	public StudentDto getStudentById(long id) {
 
-		return mapper.studentEntityToStudentDto(studentDAO.getStudentById(id));
+		return objectMapper.convertValue(studentDAO.getStudentById(id), StudentDto.class);
 	}
 
 	public void deleteStudent(long id) {
@@ -48,7 +42,11 @@ public class StudentService {
 	}
 
 	public List<StudentDto> getStudents() {
-		return mapper.studentEntitiesToStudentDtos(studentDAO.getStudents());
+		List<StudentDto> studentDtos = new ArrayList<>();
+		studentDAO.getStudents().forEach(stu -> {
+			studentDtos.add(objectMapper.convertValue(stu, StudentDto.class));
+		});
+		return studentDtos;
 	}
 
 }

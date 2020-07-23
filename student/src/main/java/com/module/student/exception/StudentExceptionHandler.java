@@ -62,30 +62,4 @@ public class StudentExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-//	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<Object> handleUnAuthorizedException(Exception ex, WebRequest request) {
-
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("timestamp", LocalDateTime.now());
-		body.put("message", ex.getMessage());
-		body.put("status", HttpStatus.FORBIDDEN.value());
-		body.put("error", HttpStatus.FORBIDDEN.name().toLowerCase());
-		body.put("path", request.getContextPath());
-
-		return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
-	}
-	
-//	@ExceptionHandler(TokenExpiredException.class)
-	public ResponseEntity<Object> handleTokenExpireException(Exception ex, WebRequest request) {
-
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("timestamp", LocalDateTime.now());
-		body.put("message", "Jwt Token Expired!!");
-		body.put("status", HttpStatus.FORBIDDEN.value());
-		body.put("error", HttpStatus.FORBIDDEN.name().toLowerCase());
-		body.put("path", request.getContextPath());
-
-		return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
-	}
-
 }

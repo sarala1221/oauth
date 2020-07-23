@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
@@ -19,12 +21,9 @@ import com.module.student.repo.CourseRepository;
 import com.module.student.repo.StudentRepository;
 import com.module.student.repo.SubjectRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
-@Slf4j
 public class StudentDAO {
-
+	private static final Logger log = LoggerFactory.getLogger(StudentDAO.class);
 	@Autowired
 	private StudentRepository studentRepo;
 	@Autowired
@@ -36,21 +35,11 @@ public class StudentDAO {
 	private AddressRepository addressRepo;
 
 	public void addStudent(Student student) {
-//		log.info("Enrolling student :{}", student.getFirst_name() + student.getLast_name());
+		log.info("Enrolling student :{}", student.getFirst_name() + student.getLast_name());
 		addressRepo.saveAll(student.getAddress());
 		subjectRepo.saveAll(student.getCourse().getSubjects());
 		courseRepo.save(student.getCourse());
 		studentRepo.save(student);
-	}
-
-	public void updateStudent(Student student) {
-		addressRepo.saveAll(student.getAddress());
-		subjectRepo.saveAll(student.getCourse().getSubjects());
-		courseRepo.save(student.getCourse());
-		Student st = studentRepo.save(student);
-
-		System.out.println(st.getStuid());
-
 	}
 
 	@Transactional(value = TxType.REQUIRED)
