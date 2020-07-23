@@ -1,36 +1,49 @@
 zuul:
-   routes:
-      student:
-         path: /api/v1/students/**
-         url: http://localhost:8082/api/v1/students/
-   host:
-      connect-timeout-millis: 1000000
-      socket-timeout-millis: 1000000
+  routes:
+    student-service:
+      path: /api/v1/students/**
+         # either url or serviceid can be given
+      url: http://localhost:8082/api/v1/students
+    student-service1:
+      path: /api/v1/students/**
+         # either url or serviceid can be given
+      url: http://localhost:8084/api/v1/students
+      #serviceId: student-service
+  stripPrefix: true
+  host:
+    connect-timeout-millis: 1000000
+    socket-timeout-millis: 1000000
 hystrix:
-   command:
-      default:
-         execution:
-            isolation:
-               thread:
-                  timeoutInMilliseconds: 1000000
-               strategy: THREAD
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000000
+          strategy: THREAD
 #discovery
 ribbon:
-   ReadTimeout: 60000
+  ReadTimeout: 60000
+  eureka:
+    enabled: true
+
+student-service:
+  ribbon:
+    listOfServers: localhost:8082
+    ServerListRefreshInterval: 15000
+student-service1:
+  ribbon:
+    listOfServers: localhost:8084
+    ServerListRefreshInterval: 15000
+    
 server:
    port: 8090
 spring:
    application:
-#eureka:
-# client:
-#  register-with-eureka: true
-# fetch-registry: true
-#serviceUrl:
-#defaultZone: http://127.0.0.1:8761/eureka/
-      name: gateway
+     name: gateway
    datasource:
       url: jdbc:h2:mem:devdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE;
-# DataSource settings: set here configurations for the database connection
+ #DataSource settings: set here configurations for the database connection
       username: dev
       password: dev
       driverClassName: org.h2.Driver
@@ -56,3 +69,9 @@ spring:
 # This is for FlyWay configuration
       user: vslala
       password: simplepass
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  serviceUrl:
+    defaultZone: http://127.0.0.1:8761/eureka/
