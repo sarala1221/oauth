@@ -2,6 +2,7 @@ package com.api.gateway.cfg;
 
 import java.security.KeyPair;
 import java.security.interfaces.RSAPublicKey;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,9 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.nimbusds.jwt.JWT;
+import com.nimbusds.jwt.SignedJWT;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -68,6 +72,15 @@ public class JwtTokenUtil {
 
 	// validate token
 	public Boolean validateToken(String token, UserDetails userDetails) {
+//		try {
+//			SignedJWT j = SignedJWT.parse(token);
+//			j.getSignature().decode().toString();
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
 		final String username = getUsernameFromToken(token);
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}

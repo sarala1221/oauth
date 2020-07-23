@@ -1,5 +1,7 @@
 package com.api.gateway.dao;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,8 @@ public class OAuthDao {
 	private UserRepo userRepo;
 
 	@Transactional
-	public UserEntity getUserDetails(String username) {
+	public Optional<UserEntity> getUserDetails(String username) {
 
-		UserEntity user = userRepo.findbyName(username);
-		System.err.println("user ::::::::::: " + user.getGrantedAuthoritiesList());
-		return user;
+		return Optional.of(userRepo.findbyName(username));
 	}
 }

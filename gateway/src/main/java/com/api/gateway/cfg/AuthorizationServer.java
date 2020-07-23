@@ -31,9 +31,11 @@ import com.nimbusds.jose.jwk.RSAKey;
 @Configuration
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
+	private static final String KEY_STORE_FILE = "/auth-jwt.jks";
+	private static final String KEY_STORE_PASSWORD = "demo-pass";
+	private static final String KEY_ALIAS = "demo-oauth-jwt";
+	private static final String JWK_KID = "auth-key-id";
 	private PasswordEncoder bCryptPasswordEncoder;
-//	private JwtTokenStore jwtTokenStore;
-//	private JwtAccessTokenConverter jwtAccessTokenConverter;
 	private AuthenticationManager authenticationManager;
 	private DataSource dataSource;
 
@@ -41,7 +43,6 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 			DataSource dataSource) {
 		this.authenticationManager = authenticationManager;
 		this.dataSource = dataSource;
-//		this.jwtAccessTokenConverter = jwtAccessTokenConverter;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
@@ -62,11 +63,6 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore(accessTokenConverter()))
 				.accessTokenConverter(accessTokenConverter());
 	}
-
-	private static final String KEY_STORE_FILE = "/auth-jwt.jks";
-	private static final String KEY_STORE_PASSWORD = "demo-pass";
-	private static final String KEY_ALIAS = "demo-oauth-jwt";
-	private static final String JWK_KID = "auth-key-id";
 
 	@Bean
 	public TokenStore tokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {
